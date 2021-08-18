@@ -1,0 +1,158 @@
+* {
+    background-color:rgb(142, 241, 241);
+}
+
+.card {
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    width: 350px;
+    background-color: darksalmon;
+    margin-bottom: 20px;
+	margin-top: 20px;
+}
+
+.card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+    transform: scale(1.03);
+}
+
+.container {
+    padding: 2px 16px;
+    background-color: darksalmon;
+}
+
+.identity {
+	visibility: hidden;
+	display: none;
+	
+	&:checked + .identity__label {
+	background-color:lightpink;
+	
+	&:before {
+	transform: translateX(30px);
+	background-color:peachpuff;
+	}
+	}
+	}
+	.identity__label {
+	display: flex;
+	width: 60px;
+	height: 24px;
+	border: 3px solid #161623;
+	border-radius: 99em;
+	position: relative;
+	transition: transform 0.75s ease-in-out;
+	transform-origin: 50% 50%;
+	cursor: pointer;
+	background-color:rgba(34, 194, 235, 0.945);
+	
+	&:before {
+	transition: transform 0.75s ease;
+	content: "";
+	display: block;
+	position: absolute;
+	width: 16px;
+	height: 16px;
+	background-color:lightpink;
+	border-radius: 50%;
+	top: 4px;
+	left: 6px;
+	}
+	}
+
+	.check__flex {
+		display: flex;
+	}
+
+
+	.all__form {
+		width: 400px;
+		margin: 0 auto;
+	}
+
+	.text__form {
+		color:darkred; font-family: ‘Droid serif’, serif; font-size: 24px; font-weight: 400; font-style: italic; line-height: 44px; margin: 0;
+	}
+
+	.agreement {
+		color: red;
+		font-style: inherit;
+		font-size: 14px;
+	}
+
+	.agree__text{
+		font-size: 20px;
+	}
+
+	.check {
+		display: flex;
+	}
+
+	.box__check {
+		margin-top: 26px;
+	}
+
+	.gender {
+		color: #d04764; font-family: ‘Lobster’, cursive; font-size: 25px; font-weight: normal; line-height: 48px; text-shadow: 1px 0 0 #fff; margin-top: -10px; margin-left: 5px; margin-right: 5px;
+	}
+	
+	input[type="text"], .select__country, input[type="date"]  {
+		border: 2px solid #0617f87a;
+		border-radius: 3px;
+		-webkit-border-radius: 3px;
+		-moz-border-radius: 3px;
+		-khtml-border-radius: 3px;
+		background:rgba(208, 186, 221, 0.795) !important;
+		outline: none;
+		height: 30px;
+		width: 200px;
+		color: #000000;
+		font-size: 18px;
+		font-family: Tahoma;
+	 }
+
+	 .date__error {
+		 font-size: 16px;
+		 font-style: initial;
+	 }
+
+	 input[disabled] {
+		border: 2px solid #d3d4e07a;
+		border-radius: 3px;
+		-webkit-border-radius: 3px;
+		-moz-border-radius: 3px;
+		-khtml-border-radius: 3px;
+		background:rgba(218, 136, 221, 0.39);
+		outline: none;
+		height: 30px;
+		width: 200px;
+		color: #afa8a8;
+		font-size: 18px;
+		font-family: Tahoma;
+	 }
+	 
+	 .button__form {
+		border: 2px solid #0617f87a;
+		border-radius: 3px;
+		-webkit-border-radius: 3px;
+		-moz-border-radius: 3px;
+		-khtml-border-radius: 3px;
+		background:rgba(208, 186, 221, 0.795);
+		outline: none;
+		height: 30px;
+		width: 200px;
+		color: #000000;
+		font-size: 18px;
+		font-family: Tahoma;
+	 }
+
+	 .card__text {
+		 background-color: darksalmon;
+		 font-family: ‘Droid serif’, serif;
+		 color:maroon;
+		 font-size: 20px;
+		 font-weight: 400;
+		 font-style: italic;
+		 line-height: 44px;
+		 margin: 0;
+	 }
