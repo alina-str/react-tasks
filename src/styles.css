@@ -112,3 +112,51 @@ table {
     width: auto;
     margin: 0 auto;
 }
+
+.head_spisok {
+    display: flex;
+    justify-content: space-around;
+    padding: 0 5px;
+    background-color: rgba(178, 170, 228, 0.897);
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.head_spisok a {
+    background-color: rgba(178, 170, 228, 0.897);
+    color: #d04764; font-family: ‘Lobster’, cursive; font-size: 30px; font-weight: normal; line-height: 40px; text-shadow: 1px 0 0 #fff;
+}
+
+.head_spisok a.active_head {
+    background-color: rgb(235, 196, 152);
+}
+.active_head {
+    color: #d04764; font-family: ‘Lobster’, cursive; font-size: 30px; font-weight: normal; line-height: 40px; text-shadow: 1px 0 0 #fff;
+}
+.fade-enter {
+    opacity: 0;
+    z-index: 1;
+    position: absolute;
+  }
+  
+  .fade-enter.fade-enter-active {
+    opacity: 1;
+    transition: all 500ms ease-in;
+    z-index: 1;
+    position: absolute;
+  }
+
+  .title_details {
+    color: #d04764; font-family: ‘Lobster’, cursive; font-size: 30px; font-weight: normal; line-height: 40px; margin: 0 0 18px; text-shadow: 1px 0 0 #fff;
+  }
+  .description_details,.author_details, .date_details {
+    color: #222; font-family: ‘Open Sans’, sans-serif; font-size: 18px; font-weight: 400; line-height: 24px;
+  }
+  .content_details {
+      margin-top: 20px;
+      font-size: 18px;
+  }
+  .img_details, .picture_det {
+      width: 500px;
+      margin: 0 auto;
+  }

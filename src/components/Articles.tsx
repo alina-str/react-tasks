@@ -1,4 +1,5 @@
 import React, { ChangeEvent, FC, useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { Article } from "../types";
 import "../styles.css";
 
@@ -45,7 +46,9 @@ const Articles: FC<ArticleProps> = (props: ArticleProps) => {
               ({ author, title, publishedAt, urlToImage }, index: number) => {
                 return (
                   <tr key={index}>
-                    <td className="title">{title}</td>
+                    <td className="title">
+                      <Link to={`/details/${title}`}>{title}</Link>
+                    </td>
                     <td className="author">{author}</td>
                     <td className="date">{publishedAt}</td>
                     <td>

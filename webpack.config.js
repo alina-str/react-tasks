@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
 const path = require("path");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
@@ -5,7 +6,7 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const CopyPlugin = require("copy-webpack-plugin");
 const ESLintPlugin = require("eslint-webpack-plugin");
 const ForkTsCheckerWebpackPlugin = require("fork-ts-checker-webpack-plugin");
-const Dotenv = require('dotenv-webpack');
+const Dotenv = require("dotenv-webpack");
 
 const esLintPlugin = (isDev) =>
   isDev ? [] : [new ESLintPlugin({ extensions: ["ts", "tsx"] })];
@@ -17,7 +18,8 @@ const devServer = (isDev) =>
         devServer: {
           open: true,
           hot: true,
-          port: 8080
+          port: 8080,
+          historyApiFallback: true
         }
       };
 
@@ -27,6 +29,7 @@ module.exports = ({ development }) => ({
   entry: "./src/index.tsx",
   output: {
     path: path.resolve(__dirname, "dist"),
+    publicPath: development ? "/" : "",
     filename: "[name].[contenthash].js",
     assetModuleFilename: "assets/[name][ext]"
   },
@@ -68,6 +71,6 @@ module.exports = ({ development }) => ({
     ]
   },
   resolve: {
-    extensions: [".js",".ts", ".tsx"]
+    extensions: [".js", ".ts", ".tsx"]
   }
 });
