@@ -1,22 +1,23 @@
-import React, { ChangeEvent, FC, useEffect, useState } from "react";
+import React, { ChangeEvent, FC, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { Article } from "../types";
+import { useDispatch, useSelector } from "react-redux";
+import { Article, SearchInterface } from "../types";
 import "../styles.css";
+import { setArtPage, setPage } from "../redux/actions/action_search";
 
 interface ArticleProps {
   articles: Article[];
-  page: number;
-  onChangePage: { (pageFromInput: number): void };
 }
 
 const Articles: FC<ArticleProps> = (props: ArticleProps) => {
-  const { articles, page, onChangePage } = props;
-
-  const [artPage, setArtPage] = useState<number | string>("");
+  const { articles } = props;
+  const page = useSelector((state: SearchInterface) => state.page);
+  const artPage = useSelector((state: SearchInterface) => state.artPage);
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    setArtPage(page);
-  }, [page]);
+    dispatch(setArtPage(page));
+  }, [dispatch, page]);
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>): void => {
     const { value } = e.target;
@@ -24,10 +25,10 @@ const Articles: FC<ArticleProps> = (props: ArticleProps) => {
     const matchedValue = value.match(regexp);
     if (matchedValue) {
       const newValue = +matchedValue[0];
-      onChangePage(newValue);
-      setArtPage(newValue);
+      dispatch(setPage(newValue));
+      dispatch(setArtPage(newValue));
     } else {
-      setArtPage("");
+      dispatch(setArtPage(0));
     }
   };
 

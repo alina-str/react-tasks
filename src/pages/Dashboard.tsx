@@ -1,46 +1,49 @@
-import { AxiosResponse } from "axios";
 import React, { ChangeEvent, FC, useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import Articles from "../components/Articles";
-import axios from "../services/api";
+import {
+  setPageSize,
+  setSearchValue,
+  setSort
+} from "../redux/actions/action_search";
+import asyncGetArticles from "../redux/asyncActions/asyncActions";
 import "../styles.css";
-import Get200Articles, { Article, SortType } from "../types";
+import { SearchInterface, SortType } from "../types";
 
 export const API_KEY = "d7d00558af544539b8a92768e90c3a61";
 
 const Dashboard: FC = () => {
-  const [searchValue, setSearchValue] = useState<string>("");
+  const kolvoArts = useSelector((state: SearchInterface) => state.pageSize);
+  const sortBy = useSelector((state: SearchInterface) => state.sortBy);
+  const arts = useSelector((state: SearchInterface) => state.arts);
+  const kolvoResults = useSelector(
+    (state: SearchInterface) => state.kolvoResults
+  );
+  const dispatch = useDispatch();
+  const searchValue = useSelector(
+    (state: SearchInterface) => state.searchValue
+  );
+  const page = useSelector((state: SearchInterface) => state.page);
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [arts, setArts] = useState<Article[]>([]);
-  const [sortBy, setSortBy] = useState<SortType>(SortType.popularity);
-  const [page, setPage] = useState<number>(1);
-  const [kolvoArts, setKolvoArts] = useState<number | string>(10);
-  const [kolvoResults, setKolvoResults] = useState<number>(0);
 
   const handleSubmit = async (
     e: React.ChangeEvent<HTMLFormElement>
   ): Promise<void> => {
     e.preventDefault();
-    setIsLoading(true);
-    try {
-      const response: AxiosResponse<Get200Articles> = await axios.get(
-        `v2/everything?q=${searchValue}&apiKey=${API_KEY}&SortBy=${sortBy}&pageSize=${kolvoArts}&page=${page}`
+    if (kolvoArts !== 0 && searchValue !== "") {
+      dispatch(
+        asyncGetArticles(searchValue, sortBy, kolvoArts, page, setIsLoading)
       );
-      setArts(response.data.articles);
-      setKolvoResults(response.data.totalResults);
-    } catch (err) {
-      console.error(err);
-    } finally {
-      setIsLoading(false);
     }
   };
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
     const { value } = e.target;
-    setSearchValue(value);
+    dispatch(setSearchValue(value));
   };
 
   useEffect(() => {
-    setKolvoArts(kolvoArts);
-  }, [kolvoArts]);
+    dispatch(setPageSize(kolvoArts));
+  }, [dispatch, kolvoArts]);
 
   const handleCh = (e: ChangeEvent<HTMLInputElement>): void => {
     const { value } = e.target;
@@ -48,9 +51,9 @@ const Dashboard: FC = () => {
     const matchedValue = value.match(regexp);
     if (matchedValue) {
       const newValue = +matchedValue[0];
-      setKolvoArts(newValue);
+      dispatch(setPageSize(newValue));
     } else {
-      setKolvoArts("");
+      dispatch(setPageSize(1));
     }
   };
 
@@ -75,7 +78,7 @@ const Dashboard: FC = () => {
                 type="radio"
                 value={SortType.relevancy}
                 checked={sortBy === SortType.relevancy}
-                onChange={() => setSortBy(SortType.relevancy)}
+                onChange={() => dispatch(setSort(SortType.relevancy))}
               />{" "}
               relevancy
             </label>
@@ -84,7 +87,7 @@ const Dashboard: FC = () => {
                 type="radio"
                 value={SortType.popularity}
                 checked={sortBy === SortType.popularity}
-                onChange={() => setSortBy(SortType.popularity)}
+                onChange={() => dispatch(setSort(SortType.popularity))}
               />{" "}
               popularity
             </label>
@@ -93,7 +96,7 @@ const Dashboard: FC = () => {
                 type="radio"
                 value={SortType.publishedAt}
                 checked={sortBy === SortType.publishedAt}
-                onChange={() => setSortBy(SortType.publishedAt)}
+                onChange={() => dispatch(setSort(SortType.publishedAt))}
               />{" "}
               published at
             </label>
@@ -114,12 +117,8 @@ const Dashboard: FC = () => {
           </button>
         </div>
       </form>
-      <Articles
-        articles={arts}
-        page={page}
-        onChangePage={(pageFromInput: number) => setPage(pageFromInput)}
-      />
-      {kolvoResults !== 0 || NaN ? (
+      <Articles articles={arts} />
+      {kolvoResults !== 0 ? (
         <div className="kolvostr">
           Всего страниц {Math.floor(kolvoResults / Number(kolvoArts))}
         </div>
@@ -127,5 +126,4 @@ const Dashboard: FC = () => {
     </div>
   );
 };
-
 export default Dashboard;

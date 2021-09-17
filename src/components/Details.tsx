@@ -1,27 +1,17 @@
-import React, { useEffect, useState } from "react";
-import { AxiosResponse } from "axios";
+import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
-import axios from "../services/api";
+import { useDispatch, useSelector } from "react-redux";
 import "../styles.css";
-import { API_KEY } from "../pages/Dashboard";
-import Get200Articles, { Article } from "../types";
+import { SearchInterface } from "../types";
+import { asyncGetDetails } from "../redux/asyncActions/asyncActions";
 
 const Details = (): JSX.Element => {
   const { id }: any = useParams();
-  const [data, setData] = useState<Article[]>([]);
-  const detailsReturn = async (): Promise<void> => {
-    try {
-      const response: AxiosResponse<Get200Articles> = await axios.get(
-        `v2/everything?apiKey=${API_KEY}&qInTitle=${id}`
-      );
-      setData(response.data.articles);
-    } catch (err) {
-      console.error(err);
-    }
-  };
+  const dispatch = useDispatch();
+  const data = useSelector((state: SearchInterface) => state.data);
   useEffect(() => {
-    detailsReturn();
-  }, []);
+    dispatch(asyncGetDetails(id));
+  }, [dispatch, id]);
   return (
     <div className="details">
       {data[0] !== undefined ? (
