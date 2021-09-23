@@ -1,6 +1,6 @@
 import React, { FC, Suspense } from "react";
 
-import { Switch, Route, Redirect, useLocation } from "react-router-dom";
+import { Switch, Route, Redirect, useLocation, withRouter } from "react-router-dom";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
 import Details from "./components/Details";
 import Header from "./components/Header";
@@ -27,8 +27,7 @@ const navData = [
     path: "*"
   }
 ];
-const App: FC = () => {
-  const location = useLocation();
+const App = ({location}:any) => {
   return (
     <div className="App">
       <Suspense fallback={<div>Loading...</div>}>
@@ -52,4 +51,4 @@ const App: FC = () => {
   );
 };
 
-export default App;
+export default withRouter(App);

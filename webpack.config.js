@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 const path = require("path");
+const { join } = require("path");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
@@ -34,6 +35,11 @@ module.exports = ({ development }) => ({
     assetModuleFilename: "assets/[name][ext]"
   },
   ...devServer(development),
+  resolve: {
+    alias: {
+      "react-router-dom": path.resolve(join(__dirname, "../"), "node_modules", "react-router-dom"),
+   }
+  },
   plugins: [
     ...esLintPlugin(development),
     new HtmlWebpackPlugin({ template: "./src/index.html" }),

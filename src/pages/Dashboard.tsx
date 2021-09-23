@@ -75,6 +75,7 @@ const Dashboard: FC = () => {
           <div className="radios">
             <label>
               <input
+                data-testid={SortType.relevancy}
                 type="radio"
                 value={SortType.relevancy}
                 checked={sortBy === SortType.relevancy}
