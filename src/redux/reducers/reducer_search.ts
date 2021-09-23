@@ -1,5 +1,16 @@
 import { Article, SearchInterface } from "../../types";
 
+export const initialState = {
+  pageSize: 10,
+  sortBy: "popularity",
+  searchValue: "",
+  page: 1,
+  artPage: 1,
+  arts: [] as Article[],
+  kolvoResults: 0,
+  data: [] as Article[],
+};
+
 export default function setSearchReducer(
   state = {
     pageSize: 10,
@@ -9,7 +20,7 @@ export default function setSearchReducer(
     artPage: 1,
     arts: [] as Article[],
     kolvoResults: 0,
-    data: [] as Article[]
+    data: [] as Article[],
   },
   action: { type: string; payload: string | number | Array<Article> }
 ): SearchInterface {

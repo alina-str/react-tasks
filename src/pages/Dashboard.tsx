@@ -4,7 +4,7 @@ import Articles from "../components/Articles";
 import {
   setPageSize,
   setSearchValue,
-  setSort
+  setSort,
 } from "../redux/actions/action_search";
 import asyncGetArticles from "../redux/asyncActions/asyncActions";
 import "../styles.css";

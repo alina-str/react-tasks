@@ -16,7 +16,7 @@ interface GET200Articles {
 export enum SortType {
   relevancy = "relevancy",
   popularity = "popularity",
-  publishedAt = "publishedAt"
+  publishedAt = "publishedAt",
 }
 
 export interface SearchInterface {

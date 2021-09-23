@@ -1,6 +1,10 @@
-import React, { FC, Suspense } from "react";
+import React from "react";
 
-import { Switch, Route, Redirect, useLocation } from "react-router-dom";
+import {
+  Switch,
+  Route,
+  withRouter,
+} from "react-router-dom";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
 import Details from "./components/Details";
 import Header from "./components/Header";
@@ -9,29 +13,32 @@ import Dashboard from "./pages/Dashboard";
 import NoMatch from "./pages/NoMatch";
 import "./styles.css";
 
-const navData = [
+export const navData = [
   {
     Component: <Dashboard />,
-    path: "/"
+    path: "/",
+    key: "dashboard",
   },
   {
     Component: <About />,
-    path: "/about"
+    path: "/about",
+    key: "about",
   },
   {
     Component: <Details />,
-    path: "/details/:id"
+    path: "/details/:id",
+    key: "details",
   },
   {
     Component: <NoMatch />,
-    path: "*"
-  }
+    path: "*",
+    key: "nomatch",
+  },
 ];
-const App: FC = () => {
-  const location = useLocation();
+const App= ({location}:any):JSX.Element=> {
+
   return (
     <div className="App">
-      <Suspense fallback={<div>Loading...</div>}>
         <Header />
         <TransitionGroup>
           <CSSTransition timeout={300} classNames="fade" key={location.key}>
@@ -43,13 +50,11 @@ const App: FC = () => {
                   </Route>
                 );
               })}
-              <Redirect to="/" />
             </Switch>
           </CSSTransition>
         </TransitionGroup>
-      </Suspense>
     </div>
   );
 };
 
-export default App;
+export default withRouter(App);
