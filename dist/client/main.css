@@ -1,0 +1,165 @@
+/*!******************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./src/styles.css ***!
+  \******************************************************************/
+* {
+    background-color: antiquewhite;
+}
+
+.input{
+    margin-right: 16px;
+    
+}
+
+.search-gr > input {
+    margin-right: 16px;
+}
+
+.radios label {
+    display: block;
+    font-size: 18px;
+    color:rgb(68, 6, 83)
+}
+
+.input__search, .kolvoarts_input, .button_search, .nom_str {
+    border: 2px solid #ebbfd57e;
+		border-radius: 3px;
+		-webkit-border-radius: 3px;
+		-moz-border-radius: 3px;
+		-khtml-border-radius: 3px;
+		background:rgba(218, 177, 206, 0.795) !important;
+		outline: none;
+		height: 30px;
+		width: 200px;
+		color: #000000;
+		font-size: 18px;
+		font-family: Tahoma;
+        margin-left: 10px;
+}
+
+.search {
+    display: flex;
+    width: 400px;
+	margin: 0 auto;
+}
+
+.search_text, .sort_text {
+    color: #5e0a0a; font-family: ‘Trocchi’, serif; font-size: 30px; font-weight: normal; line-height: 48px; margin-top: -5px;
+}
+
+.sort_text {
+    font-size: 20px;
+    margin: 0;
+}
+.kolvoarts {
+    display: flex;
+    margin-top: 20px;
+}
+.kolvoarts_text {
+    color: #5e0a0a;
+    font-size: 18px;
+}
+.kolvoarts_input {
+		width: 50px;
+        height: 20px;
+        font-size: 14px;
+}
+.button {
+    margin: 0 auto;
+    width: 150px;
+    margin-bottom: 30px;
+}
+.button_search {
+    width: 150px;
+    height: 40px;
+}
+.kolvostr,  .nomstr_text {
+    color: #5e0a0a;
+    font-size: 18px;
+}
+.str {
+    display: flex;
+    margin-top: 20px;
+}
+.nom_str {
+    width: 50px;
+    height: 20px;
+    font-size: 14px;
+}
+
+.picture {
+    width: 600px;
+}
+.header_table {
+    font-size: 20px;
+    font-style: initial;
+    font-weight:bold;
+}
+.title {
+    width: 500px;
+    font-style: unset;
+    font-size: 20px;
+}
+.author {
+    width: 100px;
+    font-style: unset;
+    margin-left: 10px;
+    margin-right: 10px;
+    font-size: 20px;
+}
+.date {
+    width: 200px;
+    font-style: unset;
+    font-size: 18px;
+}
+table {
+    width: auto;
+    margin: 0 auto;
+}
+
+.head_spisok {
+    display: flex;
+    justify-content: space-around;
+    padding: 0 5px;
+    background-color: rgba(178, 170, 228, 0.897);
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.head_spisok a {
+    background-color: rgba(178, 170, 228, 0.897);
+    color: #d04764; font-family: ‘Lobster’, cursive; font-size: 30px; font-weight: normal; line-height: 40px; text-shadow: 1px 0 0 #fff;
+}
+
+.head_spisok a.active_head {
+    background-color: rgb(235, 196, 152);
+}
+.active_head {
+    color: #d04764; font-family: ‘Lobster’, cursive; font-size: 30px; font-weight: normal; line-height: 40px; text-shadow: 1px 0 0 #fff;
+}
+.fade-enter {
+    opacity: 0;
+    z-index: 1;
+    position: absolute;
+  }
+  
+  .fade-enter.fade-enter-active {
+    opacity: 1;
+    transition: all 500ms ease-in;
+    z-index: 1;
+    position: absolute;
+  }
+
+  .title_details {
+    color: #d04764; font-family: ‘Lobster’, cursive; font-size: 30px; font-weight: normal; line-height: 40px; margin: 0 0 18px; text-shadow: 1px 0 0 #fff;
+  }
+  .description_details,.author_details, .date_details {
+    color: #222; font-family: ‘Open Sans’, sans-serif; font-size: 18px; font-weight: 400; line-height: 24px;
+  }
+  .content_details {
+      margin-top: 20px;
+      font-size: 18px;
+  }
+  .img_details, .picture_det {
+      width: 500px;
+      margin: 0 auto;
+  }
