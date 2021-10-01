@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
+import { BIRTH_DATE, FIRST_NAME, LAST_NAME } from "./constants";
 
 const Form = ({ setFormValues }) => {
   const [firstName, setFirstName] = useState("");
@@ -17,31 +18,42 @@ const Form = ({ setFormValues }) => {
   const [lastNameError, setLastNameError] = useState(
     "Фамилия не может быть пустой"
   );
-  const [formValid, setFormValid] = useState(false);
+  const [isValidForm, setIsValidForm] = useState(false);
   const [birthDateDirty, setBirthDateDirty] = useState(false);
   const [birthDateError, setBirthDateError] = useState(
     "Дата введена некорректно"
   );
 
+  const regularExpressionCheck = (namePattern, e) => {
+    if (!namePattern.test(String(e.target.value).toLowerCase())) {
+      setFirstNameError("Некорректное имя");
+    } else {
+      setFirstNameError("");
+    }
+    if (!e.target.value) {
+      setFirstNameError("Имя не может быть пустым");
+    }
+  };
+
   useEffect(() => {
     if (firstNameError || lastNameError || birthDateError || !agree) {
-      setFormValid(false);
+      setIsValidForm(false);
     } else {
-      setFormValid(true);
+      setIsValidForm(true);
     }
   }, [firstNameError, lastNameError, birthDateError, agree]);
 
-  const blurHandler = (e) => {
+  const handleBlur = (e) => {
     switch (e.target.name) {
-      case "firstName": {
+      case FIRST_NAME: {
         setFirstNameDirty(true);
         break;
       }
-      case "lastName": {
+      case LAST_NAME: {
         setLastNameDirty(true);
         break;
       }
-      case "birthDate": {
+      case BIRTH_DATE: {
         setBirthDateDirty(true);
         break;
       }
@@ -52,20 +64,13 @@ const Form = ({ setFormValues }) => {
 
   const nameHandler = (e) => {
     setFirstName(e.target.value);
-    const re = /^[а-яА-ЯёЁa-zA-Z]+$/;
-    if (!re.test(String(e.target.value).toLowerCase())) {
-      setFirstNameError("Некорректное имя");
-    } else {
-      setFirstNameError("");
-    }
-    if (!e.target.value) {
-      setFirstNameError("Имя не может быть пустым");
-    }
+    const namePattern = /^[а-яА-ЯёЁa-zA-Z]+$/;
+    regularExpressionCheck(namePattern, e);
   };
-  const surnameHandler = (e) => {
+  const lastNameHandler = (e) => {
     setLastName(e.target.value);
-    const re = /^[а-яА-ЯёЁa-zA-Z]+$/;
-    if (!re.test(String(e.target.value).toLowerCase())) {
+    const namePattern = /^[а-яА-ЯёЁa-zA-Z]+$/;
+    if (!namePattern.test(String(e.target.value).toLowerCase())) {
       setLastNameError("Некорректное имя");
     } else {
       setLastNameError("");
@@ -104,7 +109,7 @@ const Form = ({ setFormValues }) => {
     setFirstName("");
     setLastName("");
     setCheckedIdentity(false);
-    setFormValid(false);
+    setIsValidForm(false);
     setFirstNameDirty(false);
     setLastNameDirty(false);
     setBirthDateDirty(false);
@@ -134,25 +139,25 @@ const Form = ({ setFormValues }) => {
         )}
         <input
           type="text"
-          name="firstName"
+          name={FIRST_NAME}
           value={firstName}
-          onBlur={(e) => blurHandler(e)}
+          onBlur={handleBlur}
           onChange={(e) => nameHandler(e)}
         />
       </label>
       <label className="label" htmlFor="lastName">
-        <p className="text__form">Surname:</p>
+        <p className="text__form">Last name:</p>
         {lastNameDirty && lastNameError && (
           <div style={{ color: "red" }}>{lastNameError}</div>
         )}
         <input
           type="text"
-          name="lastName"
+          name={LAST_NAME}
           value={lastName}
-          onBlur={(e) => blurHandler(e)}
+          onBlur={(e) => handleBlur(e)}
           onChange={
             ((event) => setLastName(event.target.value),
-            (e) => surnameHandler(e))
+            (e) => lastNameHandler(e))
           }
         />
       </label>
@@ -165,10 +170,10 @@ const Form = ({ setFormValues }) => {
         )}
 
         <input
-          onBlur={(e) => blurHandler(e)}
+          onBlur={(e) => handleBlur(e)}
           onChange={(e) => birthDateHandler(e)}
           type="date"
-          name="birthDate"
+          name={BIRTH_DATE}
           value={birthDate}
         />
       </label>
@@ -217,7 +222,7 @@ const Form = ({ setFormValues }) => {
 
       <div className="div">
         <input
-          disabled={!formValid}
+          disabled={!isValidForm}
           type="submit"
           value="Submit"
           className="button__form"
