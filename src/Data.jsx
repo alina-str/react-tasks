@@ -1,4 +1,4 @@
-const objects = [
+const countryData = [
   {
     photo: "../public/Poland.jpg",
     country: "Poland"
@@ -37,4 +37,4 @@ const objects = [
   }
 ];
 
-export default objects;
+export default countryData;

@@ -2,6 +2,6 @@ import "./styles.css";
 import React from "react";
 import { render } from "react-dom";
 import App from "./components/App";
-import objects from "./Data";
+import countryData from "./Data";
 
-render(<App countries={objects} />, document.querySelector(".wrapper"));
+render(<App countries={countryData} />, document.querySelector(".wrapper"));

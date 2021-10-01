@@ -2,12 +2,12 @@ import React from "react";
 
 const Search = () => {
   return (
-    <form className="search_form">
-      <img src="./public/lupa.svg" alt="img" className="search_img" />
+    <form className="searchForm">
+      <img src="./public/lupa.svg" alt="search image" className="searchForm__img" />
       <input
         type="text"
         placeholder="Search for ..."
-        className="search_input"
+        className="searchForm__input"
       />
     </form>
   );

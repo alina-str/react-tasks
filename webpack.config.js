@@ -3,6 +3,13 @@ const HTMLWebpackPlugin = require("html-webpack-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const ESLintPlugin = require("eslint-webpack-plugin");
+const devCheck = (isDev) => {
+  isDev ? {devServer: {
+    port: 4200,
+    open: true,
+    hot: isDev
+  }} : {}
+};
 
 const isDev = process.env.NODE_ENV === "development";
 module.exports = {
@@ -15,11 +22,7 @@ module.exports = {
     filename: "[name].[contenthash].js",
     path: path.resolve(__dirname, "dist")
   },
-  devServer: {
-    port: 4200,
-    open: true,
-    hot: isDev
-  },
+  ...devCheck(isDev),
   devtool: isDev ? "source-map" : false,
   plugins: [
     new HTMLWebpackPlugin({
