@@ -13,18 +13,15 @@ const navData = [
 const App: FC = () => {
   return (
     <div className="App">
-      <Suspense fallback={<div>Loading...</div>}>
-        <Switch>
-          {navData.map(({ Component, path }): JSX.Element => {
-            return (
-              <Route path={path} exact key={path.toString()}>
-                {Component}
-              </Route>
-            );
-          })}
-          <Redirect to="/" />
-        </Switch>
-      </Suspense>
+      <Switch>
+        {navData.map(({ Component, path }): JSX.Element => {
+          return (
+            <Route path={path} exact key={path.toString()}>
+              {Component}
+            </Route>
+          );
+        })}
+      </Switch>
     </div>
   );
 };

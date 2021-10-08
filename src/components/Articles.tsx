@@ -34,27 +34,25 @@ const Articles: FC<ArticleProps> = (props: ArticleProps) => {
     <div>
       {articles.length ? (
         <div>
-          <table style={{ border: "1px solid #555" }}>
-            <tr style={{ border: "1px solid #888" }}>
+          <table>
+            <tr>
               <td className="header_table">Title</td>
               <td className="header_table">Author</td>
               <td className="header_table">Published at</td>
               <td className="header_table">Image</td>
             </tr>
-            {articles.map(
-              ({ author, title, publishedAt, urlToImage }, index: number) => {
-                return (
-                  <tr key={index}>
-                    <td className="title">{title}</td>
-                    <td className="author">{author}</td>
-                    <td className="date">{publishedAt}</td>
-                    <td>
-                      <img className="picture" src={urlToImage} alt={title} />
-                    </td>
-                  </tr>
-                );
-              }
-            )}
+            {articles.map(({ author, title, publishedAt, urlToImage }) => {
+              return (
+                <tr key={urlToImage}>
+                  <td className="title">{title}</td>
+                  <td className="author">{author}</td>
+                  <td className="date">{publishedAt}</td>
+                  <td>
+                    <img className="picture" src={urlToImage} alt={title} />
+                  </td>
+                </tr>
+              );
+            })}
           </table>
           <div className="str">
             <div className="nomstr_text">
@@ -62,7 +60,7 @@ const Articles: FC<ArticleProps> = (props: ArticleProps) => {
             </div>
             <input
               type="text"
-              className="nom_str"
+              className="page_number"
               value={artPage}
               onChange={handleChange}
             />

@@ -1,6 +1,7 @@
 import { AxiosResponse } from "axios";
 import React, { ChangeEvent, FC, useEffect, useState } from "react";
 import Articles from "../components/Articles";
+import FirstValues from "../constants";
 import axios from "../services/api";
 import "../styles.css";
 import Get200Articles, { Article, SortType } from "../types";
@@ -12,9 +13,13 @@ const Dashboard: FC = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [arts, setArts] = useState<Article[]>([]);
   const [sortBy, setSortBy] = useState<SortType>(SortType.popularity);
-  const [page, setPage] = useState<number>(1);
-  const [kolvoArts, setKolvoArts] = useState<number | string>(10);
-  const [kolvoResults, setKolvoResults] = useState<number>(0);
+  const [page, setPage] = useState<number>(FirstValues.firstPage);
+  const [kolvoArts, setKolvoArts] = useState<number | string>(
+    FirstValues.numberArticlesOnPage
+  );
+  const [kolvoResults, setKolvoResults] = useState<number>(
+    FirstValues.numberResults
+  );
 
   const handleSubmit = async (
     e: React.ChangeEvent<HTMLFormElement>
@@ -42,7 +47,7 @@ const Dashboard: FC = () => {
     setKolvoArts(kolvoArts);
   }, [kolvoArts]);
 
-  const handleCh = (e: ChangeEvent<HTMLInputElement>): void => {
+  const handleArticlesChange = (e: ChangeEvent<HTMLInputElement>): void => {
     const { value } = e.target;
     const regexp = /\d+/;
     const matchedValue = value.match(regexp);
@@ -63,7 +68,7 @@ const Dashboard: FC = () => {
             id="search"
             type="text"
             value={searchValue}
-            onChange={(e) => handleChange(e)}
+            onChange={handleChange}
             className="input__search"
           />
         </label>
@@ -105,7 +110,7 @@ const Dashboard: FC = () => {
             type="text"
             className="kolvoarts_input"
             value={kolvoArts}
-            onChange={handleCh}
+            onChange={handleArticlesChange}
           />
         </div>
         <div className="button">
