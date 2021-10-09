@@ -4,5 +4,6 @@ module.exports = {
       "<rootDir>/mocks/fileMock.js",
     "\\.(css|scss)$": "<rootDir>/mocks/styleMock.js"
   },
-  testEnvironment: "jsdom"
+  testEnvironment: "jsdom",
+  setupFilesAfterEnv: ["<rootDir>/jest-setup.js"]
 };

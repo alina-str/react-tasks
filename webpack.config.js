@@ -37,8 +37,12 @@ module.exports = ({ development }) => ({
   ...devServer(development),
   resolve: {
     alias: {
-      "react-router-dom": path.resolve(join(__dirname, "../"), "node_modules", "react-router-dom"),
-   }
+      "react-router-dom": path.resolve(
+        join(__dirname, "../"),
+        "node_modules",
+        "react-router-dom"
+      )
+    }
   },
   plugins: [
     ...esLintPlugin(development),

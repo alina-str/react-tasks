@@ -16,7 +16,6 @@
     "@babel/preset-env": "^7.14.8",
     "@babel/preset-react": "^7.14.5",
     "@babel/preset-typescript": "^7.15.0",
-    "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^12.1.0",
     "@testing-library/user-event": "^13.2.1",
     "@types/jest": "^27.0.1",
@@ -52,6 +51,7 @@
     "webpack-dev-server": "^3.11.2"
   },
   "dependencies": {
+    "@testing-library/jest-dom": "^5.14.1",
     "axios": "^0.21.1",
     "fork-ts-checker-webpack-plugin": "^6.3.1",
     "jest": "^27.2.0",
